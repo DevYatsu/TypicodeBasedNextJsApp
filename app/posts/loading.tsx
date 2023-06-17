@@ -12,7 +12,12 @@ export default function Loading() {
         </span>
       </div>
       <div className="grid grid-cols-1 pt-5 gap-y-4">
-        <PostSkeleton /> <PostSkeleton /> <PostSkeleton /> <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ export default function Navbar({ onPage }: { onPage?: string }) {
               alt="Store Logo"
               width={"40"}
               height={"40"}
+              priority
             />
           </h3>
         </Link>

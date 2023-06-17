@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import QueryAppWrapper from "../components/QueryAppWrapper";
 
 export const metadata = {
   title: "Posts page",

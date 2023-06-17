@@ -1,9 +1,34 @@
+"use client";
 import { Post } from "../components/Post";
-import { PostData } from "../types/PostData";
+import { ResponsePostData } from "../types/PostData";
+import useTypicodeQuery from "../hooks/useTypicodeQuery";
+import { User } from "../types/User";
+import Loading from "./loading";
 
 export default async function Posts() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const posts: PostData[] = await response.json();
+  const {
+    isLoading: isPostLoading,
+    error: postError,
+    data: posts,
+  } = useTypicodeQuery("posts", "/posts");
+
+  const {
+    isLoading: isUserLoading,
+    error: userError,
+    data: users,
+  } = useTypicodeQuery("users", "/users");
+
+  if (isPostLoading || isUserLoading) return <Loading />;
+
+  if (postError instanceof Error) {
+    "An error has occurred: " + postError.message;
+    throw new Error("An error has occurred: " + postError.message);
+  }
+  if (userError instanceof Error) {
+    console.error("An error has occurred: " + userError.message);
+    throw new Error("An error has occurred: " + userError.message);
+  }
+
   return (
     <div className="w-full h-full ">
       <div className="space-y-2 xl:pl-12">
@@ -15,7 +40,7 @@ export default async function Posts() {
         </span>
       </div>
       <div className="grid grid-cols-1 pt-5 gap-y-4">
-        {posts.map((post: PostData) => {
+        {posts.map((post: ResponsePostData) => {
           return (
             <Post
               userId={post.userId}
