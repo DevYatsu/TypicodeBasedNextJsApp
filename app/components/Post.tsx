@@ -64,10 +64,10 @@ export async function Post({
         </div>
         {isSelfPage ? (
           <div className="mt-4 mb-6">
-            <div className="mb-3 text-xl font-bold text-black dark:text-white">
+            <div className="mb-3 text-xl font-bold text-black dark:text-white selection:bg-indigo-500">
               {title}
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="text-sm text-gray-600 dark:text-gray-300 selection:bg-indigo-300">
               {body}
             </div>
           </div>
