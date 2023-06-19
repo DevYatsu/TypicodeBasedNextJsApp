@@ -3,7 +3,6 @@ import { Post, PostSkeleton } from "@/app/components/Post";
 import { useParams } from "next/navigation";
 import useTypicodeQuery from "@/app/hooks/useTypicodeQuery";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "./loading";
 import { ParamPostData } from "@/app/types/PostData";
 import { Comment } from "@/app/types/Comments";
 import { User } from "@/app/types/User";
@@ -110,7 +109,7 @@ function PostPageSkeleton({
         </h1>
         <span className="text-lg italic text-muted-foreground dark:text-slate-50">
           By{" "}
-          <Skeleton className="inline-block w-24 h-5 align-middle bg-indigo-400 rounded-2xl" />
+          <Skeleton className="inline-block w-24 h-5 align-middle bg-indigo-300 dark:bg-indigo-400 rounded-2xl" />
         </span>
       </div>
       <div className="py-4">

@@ -2,7 +2,6 @@
 import { Post } from "../components/Post";
 import { ResponsePostData } from "../types/PostData";
 import useTypicodeQuery from "../hooks/useTypicodeQuery";
-import { User } from "../types/User";
 import Loading from "./loading";
 
 export default async function Posts() {
@@ -12,21 +11,11 @@ export default async function Posts() {
     data: posts,
   } = useTypicodeQuery("posts", "/posts");
 
-  const {
-    isLoading: isUserLoading,
-    error: userError,
-    data: users,
-  } = useTypicodeQuery("users", "/users");
-
-  if (isPostLoading || isUserLoading) return <Loading />;
+  if (isPostLoading) return <Loading />;
 
   if (postError instanceof Error) {
     "An error has occurred: " + postError.message;
     throw new Error("An error has occurred: " + postError.message);
-  }
-  if (userError instanceof Error) {
-    console.error("An error has occurred: " + userError.message);
-    throw new Error("An error has occurred: " + userError.message);
   }
 
   return (

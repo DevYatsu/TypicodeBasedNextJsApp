@@ -10,7 +10,7 @@ export default function Loading() {
         </h1>
         <span className="text-lg italic text-muted-foreground dark:text-slate-50">
           By{" "}
-          <Skeleton className="inline-block w-24 h-5 align-middle bg-indigo-400 rounded-2xl" />
+          <Skeleton className="inline-block w-24 h-5 align-middle bg-indigo-300 dark:bg-indigo-400 rounded-2xl" />
         </span>
       </div>
       <div className="py-4">
