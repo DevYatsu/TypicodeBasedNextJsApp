@@ -28,7 +28,7 @@ export async function Post({
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full p-5 bg-white border shadow-md dark:bg-slate-900 xl:w-9/12 rounded-xl">
+      <div className="w-full p-5 bg-white border shadow-md dark:bg-slate-900 lg:w-9/12 rounded-xl">
         <div className="flex items-center justify-between w-full pb-3 border-b">
           <div className="flex items-center space-x-3">
             {isSelfPage ? (
@@ -136,7 +136,7 @@ export function PostSkeleton({
 }) {
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full p-5 bg-white border shadow-md dark:bg-slate-900 xl:w-9/12 rounded-xl">
+      <div className="w-full p-5 bg-white border shadow-md dark:bg-slate-900 lg:w-9/12 rounded-xl">
         <div className="flex items-center justify-between w-full pb-3 border-b">
           <div className="flex items-center space-x-3">
             <Skeleton className="w-[110px] sm:w-[150px] h-[20px] textLg font-bold bg-gray-100 rounded-full dark:bg-slate-50" />
