@@ -72,7 +72,7 @@ export default async function PostPage() {
           By {user.name}
         </span>
       </div>
-      <div className="py-4">
+      <div className="pt-4 pb-6">
         <Post
           userId={post.userId}
           id={post.id}
@@ -83,9 +83,12 @@ export default async function PostPage() {
           isSelfPage={true}
         />
       </div>
-      <section className="flex items-center justify-center ">
+      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-800">
+        <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+          Comments
+        </h2>
         {comments.length > 0
-          ? "comments apparently"
+          ? "there are comments apparently"
           : "No comments yet. Comment now to be first!"}
       </section>
     </div>
