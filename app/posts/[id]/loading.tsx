@@ -1,4 +1,6 @@
+import { CommentSkeleton } from "@/app/components/Comment";
 import { PostSkeleton } from "@/app/components/Post";
+import AddButton from "@/app/components/buttons/AddButton";
 import { Skeleton } from "@/app/components/skeleton";
 
 export default function Loading() {
@@ -16,8 +18,15 @@ export default function Loading() {
       <div className="py-4">
         <PostSkeleton />
       </div>
-      <section className="flex items-center justify-center ">
-        "comments"
+
+      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-200 dark:bg-slate-800">
+        <div className="flex items-end justify-between">
+          <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+            Comments
+          </h2>
+          <AddButton content="Comment" className="pb-1 pl-5 md:text-xl " />
+        </div>
+        <CommentSkeleton /> <CommentSkeleton /> <CommentSkeleton />
       </section>
     </div>
   );

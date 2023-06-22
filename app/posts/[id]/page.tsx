@@ -4,12 +4,22 @@ import { useParams } from "next/navigation";
 import useTypicodeQuery from "@/app/hooks/useTypicodeQuery";
 import { useQuery } from "@tanstack/react-query";
 import { ParamPostData } from "@/app/types/PostData";
-import { Comment } from "@/app/types/Comments";
+import { CommentType } from "@/app/types/Comments";
 import { User } from "@/app/types/User";
 import { Skeleton } from "@/app/components/skeleton";
+import { Comment, CommentSkeleton } from "@/app/components/Comment";
+import AddButton from "../../components/buttons/AddButton";
+import { useState } from "react";
+import Form from "../../components/forms/Form";
+
+interface CommentFormData {
+  comment: string;
+}
 
 export default async function PostPage() {
   const params = useParams();
+
+  const [addComment, setAddComment] = useState(false);
 
   const {
     error: postError,
@@ -62,6 +72,9 @@ export default async function PostPage() {
     throw new Error("An error has occurred: " + userError.message);
   }
 
+  comments[2].isReply = true;
+  comments[2].replyToCommentAuthor = "Akhy yanis";
+
   return (
     <div>
       <div className="space-y-2 xl:pl-12">
@@ -83,13 +96,49 @@ export default async function PostPage() {
           isSelfPage={true}
         />
       </div>
-      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-800">
-        <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
-          Comments
-        </h2>
-        {comments.length > 0
-          ? "there are comments apparently"
-          : "No comments yet. Comment now to be first!"}
+      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-200 dark:bg-slate-800">
+        <div className="flex items-end justify-between">
+          <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+            Comments
+          </h2>
+          <AddButton
+            content="Comment"
+            className="pb-1 pl-5 md:text-xl "
+            onClick={() => setAddComment(!addComment)}
+          />
+        </div>
+        <hr className="w-full h-1 mt-2 mb-0 bg-slate-700" />
+        {addComment ? (
+          <div className="flex flex-col items-center ">
+            <h3 className="pt-3 text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">
+              Add a new comment
+            </h3>
+            <Form<CommentFormData>
+              data={[
+                {
+                  element: "textarea",
+                  placeholder: "comment...",
+                  name: "comment",
+                },
+              ]}
+              isSimpleForm={true}
+              submitURL={`/api/comments/${params.id}/new`}
+              extraData={{
+                postId: params.id,
+                responseToPostUser: String(user.id),
+              }}
+            />
+          </div>
+        ) : (
+          ""
+        )}
+        <div className="grid grid-cols-1 gap-0 md:gap-x-5">
+          {comments.length > 0
+            ? comments.map((comment: CommentType) => (
+                <Comment key={comment.id} {...comment} />
+              ))
+            : "No comments yet. Comment now to be first!"}
+        </div>
       </section>
     </div>
   );
@@ -97,7 +146,6 @@ export default async function PostPage() {
 
 function PostPageSkeleton({
   post,
-  comments,
   user,
 }: {
   post?: ParamPostData;
@@ -108,18 +156,37 @@ function PostPageSkeleton({
     <div>
       <div className="space-y-2 xl:pl-12">
         <h1 className="text-3xl dark:text-white font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1scroll-m-20 text-4xl font-bold tracking-tight">
-          Post
+          Post {post ? post.id : ""}
         </h1>
         <span className="text-lg italic text-muted-foreground dark:text-slate-50">
           By{" "}
-          <Skeleton className="inline-block w-24 h-5 align-middle bg-indigo-300 dark:bg-indigo-400 rounded-2xl" />
+          {user ? (
+            user.name
+          ) : (
+            <Skeleton className="inline-block w-24 h-5 align-middle bg-indigo-300 dark:bg-indigo-400 rounded-2xl" />
+          )}
         </span>
       </div>
       <div className="py-4">
-        <PostSkeleton />
+        {post ? (
+          <Post
+            userId={post.userId}
+            id={post.id}
+            title={post.title}
+            body={post.body}
+          />
+        ) : (
+          <PostSkeleton />
+        )}
       </div>
-      <section className="flex items-center justify-center ">
-        {comments ? "comments load successfully" : "comments loading"}
+      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-200 dark:bg-slate-800">
+        <div className="flex items-end justify-between">
+          <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+            Comments
+          </h2>
+          <AddButton content="Comment" className="pb-1 pl-5 md:text-xl " />
+        </div>
+        <CommentSkeleton /> <CommentSkeleton /> <CommentSkeleton />
       </section>
     </div>
   );

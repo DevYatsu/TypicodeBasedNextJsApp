@@ -2,8 +2,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 export const metadata = {
-  title: "Posts page",
-  description: "A list of all the posts on the website.",
+  title: "Register",
+  description: "Register your account.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <Navbar onPage="/posts" />
+      <Navbar onPage="/register" />
       <main className="flex-col flex-1 ">
         <div className="container relative p-6 mx-auto md:p-12 2xl:px-24">
           {children}
