@@ -23,10 +23,10 @@ export default function Form<T extends FieldValues>({
     formState: { errors },
   } = useForm<T>();
 
-  const onSubmit: SubmitHandler<T> = (data) => {
+  const onSubmit: SubmitHandler<T> = async (data) => {
     console.log(data);
 
-    fetch(submitURL, {
+    await fetch(submitURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
