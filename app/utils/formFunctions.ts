@@ -1,4 +1,3 @@
-import { Resolver } from "@hookform/resolvers/zod";
 import { FormInputProps } from "../types/Form";
 import { z } from "zod";
 
