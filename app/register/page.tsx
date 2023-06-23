@@ -21,6 +21,8 @@ export default function Page() {
         data={data}
         submitURL="/api/register"
         goal="register"
+        successRedirectionURL="/login"
+        removeRequestProps={["passwordConfirmation"]}
       />
     </div>
   );

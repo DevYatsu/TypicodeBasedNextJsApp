@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FormProps } from "@/app/types/Form";
 import Select from "./Select";
 import TextArea from "./TextArea";
+import { useRouter } from "next/navigation";
 
 export default function Form<T extends FieldValues>({
   data,
@@ -16,6 +17,8 @@ export default function Form<T extends FieldValues>({
   mistakeInstruction,
   isSimpleForm,
   extraData,
+  successRedirectionURL,
+  removeRequestProps,
 }: FormProps) {
   const {
     register,
@@ -23,10 +26,14 @@ export default function Form<T extends FieldValues>({
     formState: { errors },
   } = useForm<T>();
 
-  const onSubmit: SubmitHandler<T> = async (data) => {
-    console.log(data);
+  const router = useRouter();
 
-    const res = await fetch(submitURL, {
+  const onSubmit: SubmitHandler<T> = async (data) => {
+    if (removeRequestProps && removeRequestProps.length !== 0) {
+      removeRequestProps.forEach((prop) => delete data[prop]);
+    }
+
+    const response = await fetch(submitURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +50,11 @@ export default function Form<T extends FieldValues>({
       credentials: "same-origin",
     });
 
-    console.log(await res.json());
+    const responseBody = await response.json();
+
+    if (responseBody.status === 200) {
+      router.push(successRedirectionURL);
+    }
   };
 
   return (

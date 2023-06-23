@@ -18,6 +18,7 @@ export default function Page() {
         submitURL="/api/login"
         goal="login"
         className="pt-10"
+        successRedirectionURL="/"
       />
     </div>
   );

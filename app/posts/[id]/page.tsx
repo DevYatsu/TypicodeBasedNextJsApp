@@ -122,11 +122,12 @@ export default async function PostPage() {
                 },
               ]}
               isSimpleForm={true}
-              submitURL={`/api/comments/${params.id}/new`}
+              submitURL={`/api/comments/new`}
               extraData={{
                 postId: params.id,
                 responseToPostUser: String(user.id),
               }}
+              successRedirectionURL={`/posts/${params.id}`}
             />
           </div>
         ) : (
