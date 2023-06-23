@@ -1,3 +1,4 @@
+"use client";
 import { InputProps } from "@/app/types/Form";
 
 const Input = ({ type, name, placeholder, register }: InputProps) => (

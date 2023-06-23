@@ -26,7 +26,7 @@ export default function Form<T extends FieldValues>({
   const onSubmit: SubmitHandler<T> = async (data) => {
     console.log(data);
 
-    await fetch(submitURL, {
+    const res = await fetch(submitURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,11 +42,13 @@ export default function Form<T extends FieldValues>({
         : JSON.stringify(data),
       credentials: "same-origin",
     });
+
+    console.log(await res.json());
   };
 
   return (
     <div
-      className={`w-11/12 p-12 bg-slate-100 dark:bg-slate-800 sm:w-8/12 md:w-1/2 lg:w-5/12 ${className} ${
+      className={`w-11/12 p-12 bg-slate-100 dark:bg-slate-900/40 sm:w-8/12 md:w-1/2 lg:w-5/12 ${className} ${
         isSimpleForm ? "w-full p-0 bg-inherit" : ""
       }`}
     >

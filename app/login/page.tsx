@@ -1,12 +1,12 @@
 import Form from "../components/forms/Form";
 
 interface LoginFormData {
-  username: string;
+  email: string;
   password: string;
 }
 
 const data = [
-  { name: "username", placeholder: "John" },
+  { name: "email", placeholder: "john.doe@gmail.com", type: "email" },
   { name: "password", type: "password", placeholder: "********" },
 ];
 

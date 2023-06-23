@@ -8,7 +8,7 @@ const TextArea = ({ name, register, placeholder }: TextAreaProps) => (
     <textarea
       id={name}
       rows={6}
-      className="w-full px-2 py-2 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+      className="w-full min-h-[125px] px-2 py-2 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-900"
       placeholder={placeholder}
       {...register(name, { required: true })}
     ></textarea>
