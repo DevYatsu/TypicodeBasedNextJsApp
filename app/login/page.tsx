@@ -1,14 +1,12 @@
 import Form from "../components/forms/Form";
+import { getGenericFormInputsData } from "../utils/formFunctions";
 
 interface LoginFormData {
   email: string;
   password: string;
 }
 
-const data = [
-  { name: "email", placeholder: "john.doe@gmail.com", type: "email" },
-  { name: "password", type: "password", placeholder: "********" },
-];
+const data = getGenericFormInputsData("email", "password");
 
 export default function Page() {
   return (

@@ -117,8 +117,9 @@ export default async function PostPage() {
               data={[
                 {
                   element: "textarea",
-                  placeholder: "comment...",
+                  placeholder: "Comment...",
                   name: "comment",
+                  required: "Please enter a comment.",
                 },
               ]}
               isSimpleForm={true}

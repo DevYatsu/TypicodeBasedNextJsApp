@@ -1,42 +1,48 @@
+import { HTMLInputTypeAttribute } from "react";
+
 export type SelectValues = { value: string; displayValue: string }[];
+type InputPropsRestrictions<T> =
+  | {
+      value: T;
+      message: string;
+    }
+  | T;
 
-export type SelectProps = {
-  name: string;
-  register: any;
-  values: SelectValues;
-};
-
-export type InputProps = {
-  type?: string;
+export type FormInputProps = {
+  element?: "input";
+  type?: HTMLInputTypeAttribute;
   name: string;
   placeholder: string;
-  register: any;
+  isPasswordConfirm?: boolean;
+  minLength?: InputPropsRestrictions<number>;
+  maxLength?: InputPropsRestrictions<number>;
+  pattern?: InputPropsRestrictions<string>;
+  min?: InputPropsRestrictions<number>;
+  max?: InputPropsRestrictions<number>;
+  required?: boolean | string;
 };
-export type TextAreaProps = {
-  name: string;
-  placeholder: string;
-  register: any;
-};
-
-type FormInputProps = {
-  element?: "input" | undefined;
-  placeholder: string;
-  type?: string;
-  name: string;
-};
-type FormSelectProps = {
+export type FormSelectProps = {
   element: "select";
   name: string;
   values: SelectValues;
 };
-type FormTextAreaProps = {
-  element?: "textarea";
-  placeholder: string;
+export type FormTextAreaProps = {
+  element: "textarea";
   name: string;
+  placeholder: string;
+  required?: boolean | string;
+  minLength?: InputPropsRestrictions<number>;
+  maxLength?: InputPropsRestrictions<number>;
+  rows?: number;
 };
-type FormData = (FormInputProps | FormSelectProps | FormTextAreaProps)[];
-type FormGoal = "register" | "login";
 
+export type SelectProps = FormSelectProps & { register: any };
+export type InputProps = FormInputProps & { register: any; getValues: any };
+export type TextAreaProps = FormTextAreaProps & { register: any };
+
+export type FormData = (FormInputProps | FormSelectProps | FormTextAreaProps)[];
+
+type FormGoal = "register" | "login";
 type extraFormData = {
   postId?: string;
   responseToPostUser?: string;

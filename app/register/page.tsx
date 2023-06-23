@@ -1,4 +1,5 @@
 import Form from "../components/forms/Form";
+import { getGenericFormInputsData } from "../utils/formFunctions";
 
 interface RegisterFormData {
   username: string;
@@ -7,12 +8,12 @@ interface RegisterFormData {
   passwordConfirmation: string;
 }
 
-const data = [
-  { name: "username", placeholder: "John" },
-  { name: "email", type: "email", placeholder: "john.doe@gmail.com" },
-  { name: "password", type: "password", placeholder: "********" },
-  { name: "passwordConfirmation", type: "password", placeholder: "********" },
-];
+const data = getGenericFormInputsData(
+  "username",
+  "email",
+  "password",
+  "passwordConfirmation"
+);
 
 export default function Page() {
   return (

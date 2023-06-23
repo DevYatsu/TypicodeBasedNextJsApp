@@ -24,6 +24,7 @@ export default function Form<T extends FieldValues>({
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<T>();
 
   const router = useRouter();
@@ -51,6 +52,8 @@ export default function Form<T extends FieldValues>({
     });
 
     const responseBody = await response.json();
+
+    console.log(responseBody);
 
     if (responseBody.status === 200) {
       router.push(successRedirectionURL);
@@ -87,11 +90,11 @@ export default function Form<T extends FieldValues>({
                 input.element === "textarea" ? (
                 <TextArea {...input} register={register} />
               ) : (
-                <Input {...input} register={register} />
+                <Input {...input} register={register} getValues={getValues} />
               )}
-              {errors[input.name] && (
+              {errors[input.name]?.message && (
                 <span className="text-sm text-red-500">
-                  This field is required
+                  {`${errors[input.name]?.message}`}
                 </span>
               )}
             </div>
