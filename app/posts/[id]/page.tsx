@@ -11,10 +11,21 @@ import { Comment, CommentSkeleton } from "@/app/components/Comment";
 import AddButton from "../../components/buttons/AddButton";
 import { useState } from "react";
 import Form from "reusable-react-form/lib/next";
+import {
+  genInput,
+  genSelect,
+  genTextArea,
+} from "reusable-react-form/lib/utils";
 
 interface CommentFormData {
   comment: string;
 }
+
+const data = [
+  genTextArea("comment", "Comment...", {
+    required: "Please enter a comment.",
+  }),
+];
 
 export default async function PostPage() {
   const params = useParams();
@@ -114,14 +125,7 @@ export default async function PostPage() {
               Add a new comment
             </h3>
             <Form<CommentFormData>
-              data={[
-                {
-                  element: "textarea",
-                  placeholder: "Comment...",
-                  name: "comment",
-                  required: "Please enter a comment.",
-                },
-              ]}
+              data={data}
               isSimpleForm={true}
               submitURL={`/api/comments/new`}
               extraData={{
