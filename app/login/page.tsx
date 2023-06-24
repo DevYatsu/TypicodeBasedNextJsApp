@@ -1,5 +1,5 @@
-import getGenericFormInputsData from "reusable-react-form/dist/cjs/utils";
-import Form from "reusable-react-form/dist/cjs/next";
+import { getGenericFormInputsData } from "reusable-react-form/lib/utils";
+import Form from "reusable-react-form/lib/next";
 
 interface LoginFormData {
   email: string;
