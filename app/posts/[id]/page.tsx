@@ -10,7 +10,7 @@ import { Skeleton } from "@/app/components/skeleton";
 import { Comment, CommentSkeleton } from "@/app/components/Comment";
 import AddButton from "../../components/buttons/AddButton";
 import { useState } from "react";
-import Form from "../../components/forms/Form";
+import Form from "reusable-react-form/dist/cjs/next";
 
 interface CommentFormData {
   comment: string;

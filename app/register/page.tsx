@@ -1,5 +1,5 @@
-import Form from "../components/forms/Form";
-import { getGenericFormInputsData } from "../utils/formFunctions";
+import getGenericFormInputsData from "reusable-react-form/dist/cjs/utils";
+import Form from "reusable-react-form/dist/cjs/next";
 
 interface RegisterFormData {
   username: string;
