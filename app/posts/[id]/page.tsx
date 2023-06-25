@@ -9,8 +9,9 @@ import { User } from "@/app/types/User";
 import { Skeleton } from "@/app/components/skeleton";
 import { Comment, CommentSkeleton } from "@/app/components/Comment";
 import AddButton from "../../components/buttons/AddButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextArea, NextForm as Form } from "reusable-react-form/lib";
+import PostPageError from "./page-error";
 
 interface CommentFormData {
   comment: string;
@@ -53,6 +54,8 @@ export default async function PostPage() {
     },
   });
 
+  useEffect(() => {}, [addComment]);
+
   if (isPostLoading)
     return <PostPageSkeleton comments={comments} user={user} />;
   if (isCommentsLoading) return <PostPageSkeleton post={post} user={user} />;
@@ -61,15 +64,15 @@ export default async function PostPage() {
 
   if (postError instanceof Error) {
     "An error has occurred: " + postError.message;
-    throw new Error("An error has occurred: " + postError.message);
+    return <PostPageError />;
   }
   if (commentsError instanceof Error) {
     console.error("An error has occurred: " + commentsError.message);
-    throw new Error("An error has occurred: " + commentsError.message);
+    return <PostPageError />;
   }
   if (userError instanceof Error) {
     console.error("An error has occurred: " + userError.message);
-    throw new Error("An error has occurred: " + userError.message);
+    return <PostPageError />;
   }
 
   comments[2].isReply = true;
@@ -96,14 +99,14 @@ export default async function PostPage() {
           isSelfPage={true}
         />
       </div>
-      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-200 dark:bg-slate-800">
-        <div className="flex items-end justify-between">
-          <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+      <section className="flex flex-col h-full px-4 py-5 rounded-lg sm:px-6 md:px-10 bg-slate-200 dark:bg-slate-800">
+        <div className="flex items-center justify-between lg:items-end">
+          <h2 className="text-2xl font-semibold leading-tight tracking-tighter lg:tracking-tight dark:text-white md:text-4xl lg:font-semibold">
             Comments
           </h2>
           <AddButton
             content="Comment"
-            className="pb-1 pl-5 md:text-xl "
+            className="pl-2 mt-1 md:text-xl"
             onClick={() => setAddComment(!addComment)}
           />
         </div>
@@ -179,12 +182,12 @@ function PostPageSkeleton({
           <PostSkeleton />
         )}
       </div>
-      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-200 dark:bg-slate-800">
-        <div className="flex items-end justify-between">
-          <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+      <section className="flex flex-col h-full px-4 py-5 rounded-lg sm:px-6 md:px-10 bg-slate-200 dark:bg-slate-800">
+        <div className="flex items-center justify-between lg:items-end">
+          <h2 className="text-2xl font-semibold leading-tight tracking-tighter lg:tracking-tight dark:text-white md:text-4xl lg:font-semibold">
             Comments
           </h2>
-          <AddButton content="Comment" className="pb-1 pl-5 md:text-xl " />
+          <AddButton content="Comment" className="pl-2 mt-1 md:text-xl" />
         </div>
         <CommentSkeleton /> <CommentSkeleton /> <CommentSkeleton />
       </section>

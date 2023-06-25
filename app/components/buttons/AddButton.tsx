@@ -12,10 +12,10 @@ export default function AddButton({
   return (
     <div className={` ${className}`}>
       <a
-        className="inline-flex overflow-hidden text-white bg-indigo-300 rounded-lg dark:text-black dark:bg-indigo-20"
+        className="inline-flex overflow-hidden text-white bg-indigo-300 rounded-md dark:text-black dark:bg-indigo-20"
         onClick={onClick}
       >
-        <span className="px-3.5 text-white bg-indigo-500 group-hover:bg-indigo-600 flex items-center justify-center">
+        <span className="px-1.5 sm:px-3.5 text-white bg-indigo-500 group-hover:bg-indigo-600 flex items-center justify-center">
           <svg
             className="w-5 h-5 "
             fill="#fff"
@@ -36,7 +36,9 @@ export default function AddButton({
             </g>
           </svg>
         </span>
-        <span className="py-1.5 pl-4 pr-5">{content}</span>
+        <span className="py-1 sm:py-1.5 pl-2 pr-3 sm:pl-4 sm:pr-5 ">
+          {content}
+        </span>
       </a>
     </div>
   );

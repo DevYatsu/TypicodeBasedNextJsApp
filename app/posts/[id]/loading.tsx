@@ -19,12 +19,12 @@ export default function Loading() {
         <PostSkeleton />
       </div>
 
-      <section className="flex flex-col h-full px-10 py-5 rounded-lg bg-slate-200 dark:bg-slate-800">
-        <div className="flex items-end justify-between">
-          <h2 className="text-xl dark:text-white font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1scroll-m-20 text-3xl font-semibold tracking-tight">
+      <section className="flex flex-col h-full px-4 py-5 rounded-lg sm:px-6 md:px-10 bg-slate-200 dark:bg-slate-800">
+        <div className="flex items-center justify-between w-full lg:items-end">
+          <h2 className="text-2xl font-semibold leading-tight tracking-tighter lg:tracking-tight dark:text-white md:text-4xl lg:font-semibold">
             Comments
           </h2>
-          <AddButton content="Comment" className="pb-1 pl-5 md:text-xl " />
+          <AddButton content="Comment" className="pl-2 mt-1 md:text-xl" />
         </div>
         <CommentSkeleton /> <CommentSkeleton /> <CommentSkeleton />
       </section>
