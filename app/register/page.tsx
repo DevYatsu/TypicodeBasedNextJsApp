@@ -1,5 +1,5 @@
 import { getGenericFormInputsData } from "reusable-react-form/lib/utils";
-import Form from "reusable-react-form/lib/next";
+import { NextForm as Form } from "reusable-react-form/lib";
 
 interface RegisterFormData {
   username: string;
