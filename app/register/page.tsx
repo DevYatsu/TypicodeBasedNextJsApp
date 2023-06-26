@@ -1,8 +1,8 @@
 import {
-  genInput,
+  NextForm as Form,
+  genSelect,
   getGenericFormInputsData,
-} from "reusable-react-form/lib/utils";
-import { NextForm as Form } from "reusable-react-form/lib";
+} from "reusable-react-form/lib";
 
 interface RegisterFormData {
   username: string;
@@ -11,12 +11,15 @@ interface RegisterFormData {
   passwordConfirmation: string;
 }
 
-const data = getGenericFormInputsData(
-  "username",
-  "email",
-  "password",
-  "passwordConfirmation"
-);
+const data = [
+  ...getGenericFormInputsData(
+    "username",
+    "email",
+    "password",
+    "passwordConfirmation"
+  ),
+  genSelect("test", [{ value: "str", displayValue: "effe" }]),
+];
 
 export default function Page() {
   return (

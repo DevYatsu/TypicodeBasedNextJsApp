@@ -1,5 +1,7 @@
-import { getGenericFormInputsData } from "reusable-react-form/lib/utils";
-import { NextForm as Form } from "reusable-react-form/lib";
+import {
+  NextForm as Form,
+  getGenericFormInputsData,
+} from "reusable-react-form/lib";
 
 interface LoginFormData {
   email: string;

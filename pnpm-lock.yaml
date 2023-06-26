@@ -56,8 +56,8 @@ dependencies:
     specifier: ^7.45.0
     version: 7.45.0(react@18.2.0)
   reusable-react-form:
-    specifier: ^1.2.1
-    version: 1.2.1(@babel/core@7.22.5)(@types/node@20.3.0)(react@18.2.0)(typescript@5.1.3)
+    specifier: ^1.2.3
+    version: 1.2.3(@babel/core@7.22.5)(@types/node@20.3.0)(react@18.2.0)(typescript@5.1.3)
   shadcn-ui:
     specifier: ^0.1.3
     version: 0.1.3
@@ -4280,8 +4280,8 @@ packages:
       signal-exit: 3.0.7
     dev: false
 
-  /reusable-react-form@1.2.1(@babel/core@7.22.5)(@types/node@20.3.0)(react@18.2.0)(typescript@5.1.3):
-    resolution: {integrity: sha512-OrI0On0tuXV2ACbHSksgSnI2zSkSjVodl+5tjzJuV14ApMIXzxEkLXrrNxdHJtEdVRIfIVWJ+W4n1CBnJbmv0A==}
+  /reusable-react-form@1.2.3(@babel/core@7.22.5)(@types/node@20.3.0)(react@18.2.0)(typescript@5.1.3):
+    resolution: {integrity: sha512-yviuJcCbVdQ5TIONPjSI8XPKUvwcUO/2WcxXzhRLVrDumz23vpMI3pmhpr4WJHlNC8p1s/g934h8+vY+SwSzYQ==}
     peerDependencies:
       react: '>=16'
     dependencies:
